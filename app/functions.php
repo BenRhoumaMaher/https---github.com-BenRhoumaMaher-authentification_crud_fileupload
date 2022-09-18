@@ -1,6 +1,6 @@
 <?php
 function view($page) {
-    GLOBAL $errorname, $errorlastname, $erroremail, $errorphone, $errorcountry, $errorpassword, $errorexist, $confirmpass, $errorcredentials, $erroractivate;
+    GLOBAL $errorname, $errorlastname, $erroremail, $errorphone, $errorcountry, $errorpassword, $errorexist, $confirmpass, $errorcredentials, $erroractivate, $startingrow,$perpage,$numpages ;
     require(APP_PATH ."view/$page.view.php");
 }
 function is_post(){

@@ -29,6 +29,9 @@
       body {
         overflow-x : hidden;
       }
+      .pagination {
+        margin-left: 100px;
+      }
     </style>
   </head>
   <body class="bg-dark vh-100 text-primary">
@@ -68,12 +71,12 @@
           </thead>
           <tbody id="here">
             <?php
-                $sql = "SELECT * FROM crudalpha.users";
+                $qr = "SELECT * FROM crudalpha.users LIMIT $startingrow,$perpage";
                 GLOBAL $dba;
-                $smt = $dba->prepare($sql); 
-                $smt->execute(); 
-                $query = $smt->rowCount(); 
-                $qu = $smt->fetchAll(PDO:: FETCH_OBJ); 
+                $smtt = $dba->prepare($qr); 
+                $smtt->execute();
+                $query = $smtt->rowCount(); 
+                $qu = $smtt->fetchAll(PDO:: FETCH_OBJ); 
                 if($query > 0)
                 { 
                 foreach($qu as $result)
@@ -125,6 +128,13 @@
           </tbody>
         </table>
       </form>
+      <ul class="pagination pb-5">
+        <?php
+      for($page = 1; $page<$numpages; $page++){
+        echo'<li class="page-item "><a href="./index.php?page='.$page.'" class="page-link">'.$page.'</a></li>';
+      }
+      ?>
+      </ul>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function(){
